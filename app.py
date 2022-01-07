@@ -37,9 +37,9 @@ def make_figure(overlay=None):
                                            'Region': False
                                            },
                                labels={'province': 'Province',
-                                       'Percent_age_0_to_4': '% age 0-4',
-                                       'Percent_age_5_to_9': '% age 5-9',
-                                       'Percent_age_0_to_9': '% age 0-9'},
+                                       'Percent_age_0_to_4': 'Home Bilingualism among children aged 0-4',
+                                       'Percent_age_5_to_9': 'Home Bilingualism among children aged 5-9',
+                                       'Percent_age_0_to_9': 'Home Bilingualism among children aged 0-9'},
                                )
     return fig
 
