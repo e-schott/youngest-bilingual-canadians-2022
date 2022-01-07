@@ -114,12 +114,27 @@ figure_card = dbc.Card(
             dbc.Row(
                 [
                     dbc.Col(
-                        "Use the dropdown menu to select which variable to base the colorscale on:"
+                        "Choose the age group to display:"
                     ),
                     dbc.Col(color_drop)
                 ],
                 align="center",
             ),
+        ),
+    ]
+)
+
+abstract_card = dbc.Card(
+    [
+        
+        dbc.CardBody(
+            dbc.Row(
+                dbc.Col([
+                    html.P("This study used the 2016 Canadian Census data to examine home bilingualism amongst children aged 0–9 years. Across Canada, 18 percent of children used at least two languages at home, which rose to more than 25 percent in large cities, and the Canadian territories. English and French was the most common language pair in Quebec and Ontario, and various other pairs were spoken in most provinces. In the territories, 17 percent of children spoke an Indigenous language and English, and we discuss specific opportunities and challenges for Indigenous language revitalization. The presence of bilingual adults in the home, and immigration generation were the strongest predictors of children's home bilingualism. We conclude by discussing how policies can encourage child bilingualism, such as by supporting children’s home language in early and primary education settings. Such policies must be tailored to the needs of the specific communities to optimally support bilingual children and their families. "),
+                    html.A("For more information, find the full paper at https://psyarxiv.com/6q9jg/", href= "https://psyarxiv.com/6q9jg/")
+                    
+                )
+            )
         ),
     ]
 )
