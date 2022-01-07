@@ -12,6 +12,8 @@ server = app.server
 
 results = pd.read_csv('assets/bilingual_results_with_region_codes.tsv', sep='\t')
 geo_table = gpd.read_file('assets/recombined_shape_files.zip')
+columns = [col_name for col_name in results.columns if 'Percent' in col_name]
+(vmin, vmax) = results[columns].min().min(), results[columns].max().max()
 
 
 def make_figure(overlay=None):
@@ -26,6 +28,7 @@ def make_figure(overlay=None):
                                zoom=2, center={"lat": 62.4, "lon": -96.5},
                                opacity=0.6,
                                hover_name='name',
+                               range_color=(vmin, vmax),
                                hover_data={'province': True,
                                            'Percent_age_0_to_4': True,
                                            'Percent_age_5_to_9': True,
