@@ -14,7 +14,7 @@ server = app.server
 results = pd.read_csv('assets/bilingual_results_with_region_codes.tsv', sep='\t')
 geo_table = gpd.read_file('assets/recombined_shape_files.zip')
 columns = [col_name for col_name in results.columns if 'Percent' in col_name]
-(vmin, vmax) = results[columns].min().min(), results[columns].max().max()
+vmax = results[columns].max().max()
 
 
 def make_figure(overlay=None):
@@ -25,11 +25,11 @@ def make_figure(overlay=None):
                                geojson=geo_table, locations='Region', featureidkey='properties.PK', color=overlay,
                                color_continuous_scale="Viridis",
                                mapbox_style="carto-positron",
-                               height=800,
-                               zoom=2.5, center={"lat": 63.7, "lon": -98.1},
+                               height=700,
+                               zoom=2.5, center={"lat": 60, "lon": -98.1},
                                opacity=0.6,
                                hover_name='name',
-                               range_color=(vmin, vmax),
+                               range_color=(0, vmax),
                                hover_data={'province': True,
                                            'Percent_age_0_to_4': True,
                                            'Percent_age_5_to_9': True,
@@ -41,6 +41,7 @@ def make_figure(overlay=None):
                                        'Percent_age_5_to_9': 'Home Bilingualism among children aged 5-9',
                                        'Percent_age_0_to_9': 'Home Bilingualism among children aged 0-9'},
                                )
+    fig['layout'].update(margin=dict(l=0, r=0, b=0, t=30))
     return fig
 
 
