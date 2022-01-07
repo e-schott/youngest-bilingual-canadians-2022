@@ -8,6 +8,7 @@ from dash.dependencies import Input, Output
 
 external_stylesheets = [dbc.themes.BOOTSTRAP, "assets/styles.css"]
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app.title = "Home bilingualism in Canada"
 server = app.server
 
 results = pd.read_csv('assets/bilingual_results_with_region_codes.tsv', sep='\t')
