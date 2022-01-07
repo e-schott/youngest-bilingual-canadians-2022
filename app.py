@@ -55,10 +55,10 @@ header = dbc.Navbar(
                                 src=app.get_asset_url("Flag_of_Canada_(Pantone).svg"),
                                 height="30px",
                             ),
-                            href="https://neurodatascience.github.io/",
+                            href="https://github.com/e-schott/BilingalismCanada",
                         )
                     ),
-                    dbc.Col(dbc.NavbarBrand("Canadian Bilingualism Dashboard")),
+                    dbc.Col(dbc.NavbarBrand("Information from the 2016 Canadian Census")),
                 ],
                 align="center",
             ),
@@ -102,7 +102,7 @@ color_drop = dcc.Dropdown(
 
 figure_card = dbc.Card(
     [
-        dbc.CardHeader(html.H2("Geographical distribution of bilingualism")),
+        dbc.CardHeader(html.H2("Home bilingualism in Canada")),
         dbc.CardBody(
             dbc.Row(
                 dbc.Col(
