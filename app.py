@@ -114,7 +114,7 @@ figure_card = dbc.Card(
                     ),
                     dbc.Col(color_drop)
                 ],
-                align="center",
+                align="center"
             ),
             dbc.Row(
                 dbc.Col(
@@ -124,7 +124,7 @@ figure_card = dbc.Card(
         ),
         dbc.CardFooter('Hi'
             
-        ),
+        )
     ]
 )
 
