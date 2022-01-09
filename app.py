@@ -14,7 +14,7 @@ server = app.server
 results = pd.read_csv('assets/bilingual_results_with_region_codes.tsv', sep='\t')
 geo_table = gpd.read_file('assets/recombined_shape_files.zip')
 columns = ['Percent_age_0_to_4', 'Percent_age_5_to_9', 'Percent_age_0_to_9']
-column_labels = ['0 to 4 years', '5 to 9 years', '0 to 9 years']
+column_label = ['0 to 4 years', '5 to 9 years', '0 to 9 years']
 vmax = results[columns].max().max()
 
 
