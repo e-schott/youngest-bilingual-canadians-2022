@@ -14,7 +14,7 @@ server = app.server
 results = pd.read_csv('assets/bilingual_results_with_region_codes.tsv', sep='\t')
 geo_table = gpd.read_file('assets/recombined_shape_files.zip')
 columns = ['Percent_age_0_to_4', 'Percent_age_5_to_9', 'Percent_age_0_to_9']
-column_label = ['0 to 4 years', '5 to 9 years', '0 to 9 years']
+column_label = ['0 to 4 years', '5 to 9 years', 'Combined: 0 to 9 years']
 vmax = results[columns].max().max()
 
 
@@ -43,6 +43,13 @@ def make_figure(overlay=None):
                                        'Percent_age_0_to_9': 'Home Bilingualism among children aged 0-9'},
                                )
     fig['layout'].update(margin=dict(l=0, r=0, b=0, t=30))
+    fig.update_layout(legend=dict(
+        orientation="h",
+        yanchor="bottom",
+        y=1.02,
+        xanchor="right",
+        x=1
+    ))
     return fig
 
 
