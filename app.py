@@ -26,7 +26,7 @@ def make_figure(overlay=None):
                                color_continuous_scale="Viridis",
                                mapbox_style="carto-positron",
                                height=700,
-                               zoom=2.5, center={"lat": 60, "lon": -98.1},
+                               zoom=2.3, center={"lat": 60, "lon": -98.1},
                                opacity=0.6,
                                hover_name='name',
                                range_color=(0, vmax),
@@ -37,9 +37,9 @@ def make_figure(overlay=None):
                                            'Region': False
                                            },
                                labels={'province': 'Province',
-                                       'Percent_age_0_to_4': 'Home Bilingualism among \nchildren aged 0-4',
-                                       'Percent_age_5_to_9': 'Home Bilingualism among \nchildren aged 5-9',
-                                       'Percent_age_0_to_9': 'Home Bilingualism among \nchildren aged 0-9'},
+                                       'Percent_age_0_to_4': 'Home Bilingualism among children aged 0-4',
+                                       'Percent_age_5_to_9': 'Home Bilingualism among children aged 5-9',
+                                       'Percent_age_0_to_9': 'Home Bilingualism among children aged 0-9'},
                                )
     fig['layout'].update(margin=dict(l=0, r=0, b=0, t=30))
     return fig
