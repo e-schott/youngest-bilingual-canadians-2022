@@ -107,13 +107,7 @@ figure_card = dbc.Card(
     [
         dbc.CardHeader(html.H2("Home bilingualism in Canada")),
         dbc.CardBody(
-            dbc.Row(
-                dbc.Col(
-                    figure_box
-                )
-            )
-        ),
-        dbc.CardFooter(
+            [
             dbc.Row(
                 [
                     dbc.Col(
@@ -123,6 +117,15 @@ figure_card = dbc.Card(
                 ],
                 align="center"
             ),
+            dbc.Row(
+                dbc.Col(
+                    figure_box
+                )
+            )
+            ]
+        ),
+        dbc.CardFooter(
+            
         ),
     ]
 )
