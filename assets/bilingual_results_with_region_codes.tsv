@@ -2,43 +2,45 @@
 0	Newfoundland and Labrador		3.9	4.0	4.0	0	Newfoundland and Labrador
 1	Prince Edward Island		7.1	13.8	10.4	1	Prince Edward Island
 2	Nova Scotia		6.0	9.6	7.9	2	Nova Scotia
-3	Nova Scotia	Halifax	7.9	14.5	11.2	11	Halifax
+3	Nova Scotia	Halifax	7.9	14.5	11.2	14	Halifax
 4	Nova Scotia	zz_other	4.3	5.6	4.9	2	Nova Scotia
 5	New Brunswick		10.1	15.5	12.9	3	New Brunswick
-6	New Brunswick	Moncton – Saint John	11.5	15.2	13.5	30	Moncton - Saint John
+6	New Brunswick	Moncton – Saint John	11.5	15.2	13.5	32	Moncton - Saint John
 7	New Brunswick	zz_other	9.3	15.8	12.5	3	New Brunswick
 8	Quebec		16.7	20.3	18.6	4	Quebec
-9	Quebec	Montréal	24.1	29.7	27.0	10	Montréal
-10	Quebec	Ottawa – Gatineau	18.0	26.4	22.5	15	Ottawa - Gatineau (partie du Québec / Quebec part)
-11	Quebec	Québec	9.2	9.0	9.1	13	Québec
-12	Quebec	Sherbrooke – Trois-Rivières	9.1	9.4	9.3	31	Sherbrooke - Trois-Rivières
+9	Quebec	Montréal	24.1	29.7	27.0	13	Montréal
+10	Quebec	Ottawa – Gatineau	18.0	26.4	22.5	18	Ottawa - Gatineau (partie du Québec / Quebec part)
+11	Quebec	Québec	9.2	9.0	9.1	16	Québec
+12	Quebec	Sherbrooke – Trois-Rivières	9.1	9.4	9.3	33	Sherbrooke - Trois-Rivières
 13	Quebec	zz_other	6.9	8.1	7.5	4	Quebec
 14	Ontario		17.2	23.8	20.6	5	Ontario
-15	Ontario	Brantford – Guelph – Barrie	7.9	10.3	9.2	32	Brantford - Guelph - Barrie
-16	Ontario	Greater Sudbury - Thunder Bay	12.6	23.7	18.1	33	Greater Sudbury - Thunder Bay
-17	Ontario	Hamilton	12.4	14.7	13.6	20	Hamilton
-18	Ontario	Kingston – Peterborough	6.5	9.4	8.0	34	Kingston - Peterborough
-19	Ontario	Kitchener – Cambridge – Waterloo	10.0	15.2	12.7	22	Kitchener - Cambridge - Waterloo
-20	Ontario	London	11.7	15.2	13.5	23	London
-21	Ontario	Oshawa	8.0	9.5	8.8	18	Oshawa
-22	Ontario	Ottawa – Gatineau	24.3	35.5	30.1	16	Ottawa - Gatineau (Ontario part / partie de l'Ontario)
-23	Ontario	St. Catharines – Niagara	7.7	11.3	9.5	21	St. Catharines - Niagara
-24	Ontario	Toronto	24.9	32.7	29.0	19	Toronto
-25	Ontario	Windsor	16.5	25.2	21.1	24	Windsor
+15	Ontario	Brantford – Guelph – Barrie	7.9	10.3	9.2	34	Brantford - Guelph - Barrie
+16	Ontario	Greater Sudbury - Thunder Bay	12.6	23.7	18.1	35	Greater Sudbury - Thunder Bay
+17	Ontario	Hamilton	12.4	14.7	13.6	23	Hamilton
+18	Ontario	Kingston – Peterborough	6.5	9.4	8.0	36	Kingston - Peterborough
+19	Ontario	Kitchener – Cambridge – Waterloo	10.0	15.2	12.7	25	Kitchener - Cambridge - Waterloo
+20	Ontario	London	11.7	15.2	13.5	26	London
+21	Ontario	Oshawa	8.0	9.5	8.8	21	Oshawa
+22	Ontario	Ottawa – Gatineau	24.3	35.5	30.1	19	Ottawa - Gatineau (Ontario part / partie de l'Ontario)
+23	Ontario	St. Catharines – Niagara	7.7	11.3	9.5	24	St. Catharines - Niagara
+24	Ontario	Toronto	24.9	32.7	29.0	22	Toronto
+25	Ontario	Windsor	16.5	25.2	21.1	27	Windsor
 26	Ontario	zz_other	6.9	11.8	9.4	5	Ontario
 27	Manitoba		12.6	18.4	15.5	6	Manitoba
-28	Manitoba	Winnipeg	16.4	19.6	18.0	25	Winnipeg
+28	Manitoba	Winnipeg	16.4	19.6	18.0	28	Winnipeg
 29	Manitoba	zz_other	7.9	16.9	12.5	6	Manitoba
 30	Saskatchewan		9.1	13.1	11.2	7	Saskatchewan
-31	Saskatchewan	Regina – Saskatoon	10.7	16.2	13.5	35	Regina - Saskatoon
+31	Saskatchewan	Regina – Saskatoon	10.7	16.2	13.5	37	Regina - Saskatoon
 32	Saskatchewan	zz_other	7.6	10.4	9.1	7	Saskatchewan
 33	Alberta		14.4	17.8	16.1	8	Alberta
-34	Alberta	Calgary	17.2	24.0	20.7	17	Calgary
-35	Alberta	Edmonton	17.0	19.6	18.2	28	Edmonton
+34	Alberta	Calgary	17.2	24.0	20.7	20	Calgary
+35	Alberta	Edmonton	17.0	19.6	18.2	31	Edmonton
 36	Alberta	zz_other	9.4	10.2	9.8	8	Alberta
 37	British Columbia		16.2	20.4	18.4	9	British Columbia
-38	British Columbia	Kelowna – Abbotsford	13.1	14.5	13.8	36	Kelowna - Abbotsford
-39	British Columbia	Vancouver	24.6	30.5	27.6	26	Vancouver
-40	British Columbia	Victoria	10.2	12.7	11.5	27	Victoria
+38	British Columbia	Kelowna – Abbotsford	13.1	14.5	13.8	38	Kelowna - Abbotsford
+39	British Columbia	Vancouver	24.6	30.5	27.6	29	Vancouver
+40	British Columbia	Victoria	10.2	12.7	11.5	30	Victoria
 41	British Columbia	zz_other	4.5	7.5	6.1	9	British Columbia
-42	Northern Canada		29.4	38.5	33.9	29	Northern Canada
+42	Yukon		29.4	38.5	33.9	10	Yukon
+43	Nunavut		29.4	38.5	33.9	12	Nunavut
+44	Northwest Territories		29.4	38.5	33.9	11	Northwest Territories
