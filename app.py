@@ -14,15 +14,20 @@ app.title = "Home bilingualism in Canada"
 server = app.server
 
 results = pd.read_csv('assets/bilingual_results_with_region_codes.tsv', sep='\t')
-language_pairs = pd.read_csv('assets/bilingual_language_pairs.csv')
+language_pairs = pd.read_csv('assets/language_pairs.csv')
 geo_table = gpd.read_file('assets/recombined_shape_files.zip')
 columns = [col_name for col_name in results.columns if 'Percent' in col_name]
 vmax = results[columns].max().max()
 
 # Merge bilingual pairs and region results
-biling_index = [area in language_pairs.area.unique() for area in results.area.values]
-_res_biling = results[biling_index][['area', 'Region', 'name']]
-language_table = pd.merge(language_pairs, _res_biling, on='area')
+language_pairs['name'] =[ row.area
+                         if row.type == 'cma'
+                         else row.province if row.type == 'province'
+                            else row.type
+                         for rid, row in language_pairs.iterrows()
+                          ]
+language_table = pd.merge(language_pairs, results.query('area != "zz_other"')[['Region', 'name']], on='name')
+language_table = pd.concat((language_table, language_pairs.query('type == "canada"')))
 language_columns = [('language_pair', 'language_pair_collapsed'),
                     ('% bil 0-4', 'percent_bilingual_children_age_0_to_4'),
                     ('% bil 5-9', 'percent_bilingual_children_age_5_to_9'),
@@ -164,7 +169,13 @@ table_card = dbc.Card(
             ),
                 ]
         ),
-        dbc.CardFooter('Here is the footer')
+        dbc.CardFooter(dbc.Row(
+            [
+                html.Div(id='foot'),
+                dcc.Store(id='store')
+            ]
+        )
+        )
     ]
 )
 
@@ -211,17 +222,39 @@ def update_overlay(selected_overlay):
 
 
 @app.callback(
-    [Output('table-lang', 'data'), Output('city_name', 'children')],
-    Input("graph", "hoverData")
+    Output('foot', 'children'),
+    Input('store', 'data')
 )
-def update_table(hover):
-    if hover is None:
-        return dash.no_update, 'Nowhere'
-    hover_location = hover['points'][0]['location']
-    if not hover_location in language_table.Region.values:
-        return dash.no_update, dash.no_update
-    subset = language_table.query('Region == @hover_location')
-    return subset.to_dict("records"), hover['points'][0]['hovertext']
+def set_foot(store):
+    return str(store)
+
+
+@app.callback(
+    Output('store', 'data'),
+    Input("graph", "clickData"),
+    State('store', 'data'),
+    prevent_initial_call=True
+)
+def set_mode(click, store):
+    print(store)
+    return True if store is None else None
+
+
+@app.callback(
+    [Output('table-lang', 'data'), Output('city_name', 'children')],
+    [Input("graph", "hoverData")],
+    State('store', 'data')
+)
+def update_table(hover, mode):
+    if mode is None:
+        if hover is None:
+            subset = language_table.query('type == "canada"')
+            return subset.to_dict("records"), 'Welcome to Canada'
+        else:
+            hover_location = hover['points'][0]['location']
+            subset = language_table.query('Region == @hover_location')
+            return subset.to_dict("records"), hover['points'][0]['hovertext']
+    return dash.no_update, dash.no_update
 
 
 if __name__ == "__main__":
