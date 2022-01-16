@@ -135,11 +135,11 @@
 "province","Ontario","Other Pairs",57,51.5,53.7,10.3,13.2,11.8,"Ontario",NA
 "province","Manitoba","English & French",17.5,20.3,19.2,2.3,3.8,3.1,"Manitoba",NA
 "province","Manitoba","English & Tagalog",11.7,8.2,9.6,1.5,1.5,1.5,"Manitoba",NA
-"province","Manitoba","Aboriginal & English",7.7,8.4,8.1,1,1.6,1.3,"Manitoba",NA
+"province","Manitoba","Indigenous Language & English",7.7,8.4,8.1,1,1.6,1.3,"Manitoba",NA
 "province","Manitoba","English & German",5.5,6.9,6.3,0.7,1.3,1,"Manitoba",NA
 "province","Manitoba","English & Punjabi",5.8,4.2,4.9,0.8,0.8,0.8,"Manitoba",NA
 "province","Manitoba","Other Pairs",51.8,52,51.9,6.7,9.8,8.3,"Manitoba",NA
-"province","Saskatchewan","Aboriginal & English",14,12.9,13.3,1.3,1.7,1.5,"Saskatchewan",NA
+"province","Saskatchewan","Indigenous Language & English",14,12.9,13.3,1.3,1.7,1.5,"Saskatchewan",NA
 "province","Saskatchewan","English & French",4.7,17.6,12.6,0.4,2.4,1.4,"Saskatchewan",NA
 "province","Saskatchewan","English & Tagalog",11.7,9.9,10.6,1.1,1.3,1.2,"Saskatchewan",NA
 "province","Saskatchewan","English & Urdu",6.4,7,6.8,0.6,0.9,0.8,"Saskatchewan",NA
@@ -157,14 +157,14 @@
 "province","British Columbia","English & Cantonese",5.9,5.1,5.4,1,1.1,1,"British Columbia",NA
 "province","British Columbia","English & Spanish",4.2,2.6,3.3,0.7,0.5,0.6,"British Columbia",NA
 "province","British Columbia","Other Pairs",57.3,53.5,55.1,9.6,11.4,10.5,"British Columbia",NA
-"province","Northern Canada","Aboriginal & English",50.7,50,50.3,14.9,19.2,17,"Northern Canada",NA
+"province","Northern Canada","Indigenous Language & English",50.7,50,50.3,14.9,19.2,17,"Northern Canada",NA
 "province","Northern Canada","English & French",11,9.6,10.2,3.2,3.7,3.4,"Northern Canada",NA
 "province","Northern Canada","English & Tagalog",5.5,1.1,3,1.6,0.4,1,"Northern Canada",NA
 "province","Northern Canada","Other Pairs",32.9,39.4,36.5,9.6,15.1,12.3,"Northern Canada",NA
-"canada","Canada","English&French",21.3,27.9,25.1,3.6,6.2,4.9,NA,NA
-"canada","Canada","English&Punjabi",4,4.4,4.2,0.7,1,0.8,NA,NA
-"canada","Canada","English&Mandarin",3.7,2.8,3.1,0.6,0.6,0.6,NA,NA
-"canada","Canada","Aboriginal&English",1,1,1,0.2,0.2,0.2,NA,NA
+"canada","Canada","English & French",21.3,27.9,25.1,3.6,6.2,4.9,NA,NA
+"canada","Canada","English & Punjabi",4,4.4,4.2,0.7,1,0.8,NA,NA
+"canada","Canada","English & Mandarin",3.7,2.8,3.1,0.6,0.6,0.6,NA,NA
+"canada","Canada","Indigenous Language & English",1,1,1,0.2,0.2,0.2,NA,NA
 "canada","Canada","Other & Other",54.2,50.2,51.9,9.1,11.2,10.2,NA,NA
 "canada","Canada","English & Other",11.6,10.3,10.8,1.9,2.3,2.1,NA,NA
 "canada","Canada","French & Other",4.2,3.5,3.8,0.7,0.8,0.8,NA,NA
