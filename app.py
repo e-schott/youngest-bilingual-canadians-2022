@@ -29,13 +29,13 @@ language_pairs['name'] =[ row.area
                           ]
 language_table = pd.merge(language_pairs, results.query('area != "zz_other"')[['Region', 'name']], on='name')
 language_table = pd.concat((language_table, language_pairs.query('type == "canada"')))
-col_map = {'language_pair_collapsed': 'language_pair',
-           'percent_bilingual_children_age_0_to_4': '% bil 0-4',
-           'percent_bilingual_children_age_5_to_9': '% bil 5-9',
-           'percent_bilingual_children_age_0_to_9': '% bil 0-9',
-                      'percent_all_children_age_0_to_4': '% all 0-4',
-                       'percent_all_children_age_5_to_9': '% all 5-9',
-                        'percent_all_children_age_0_to_9': '% all 0-9'
+col_map = {'language_pair_collapsed': 'Language Pair',
+           'percent_bilingual_children_age_0_to_4': '% bilinguals 0-4y',
+           'percent_bilingual_children_age_5_to_9': '% bilinguals 5-9y',
+           'percent_bilingual_children_age_0_to_9': '% bilinguals 0-9y',
+           'percent_all_children_age_0_to_4': '% all children 0-4y',
+           'percent_all_children_age_5_to_9': '% all children 5-9y',
+           'percent_all_children_age_0_to_9': '% all children 0-9y'
            }
 lang_columns = [{"name": col_map[idx], "id": idx} for idx in col_map.keys()]
 
@@ -161,11 +161,10 @@ figure_card = dbc.Card(
 
 table_card = dbc.Card(
     [
-        dbc.CardHeader('This is a table'),
-        dbc.CardBody(
+        dbc.CardHeader('Most Common Language Pairs:'
             [
                 dbc.Row([
-                    'In the City of:',
+                    'Region:',
                     html.Div(id='city_name')
                 ]
                 ),
@@ -181,7 +180,7 @@ table_card = dbc.Card(
             ),
                 ]
         ),
-        dbc.CardFooter(dbc.Row(
+        dbc.CardFooter(dbc.Row('Created by Sebastian Urchs and Esther Schott'
             [
                 html.Div(id='foot'),
                 dcc.Store(id='store')
@@ -265,7 +264,7 @@ def update_table(hover, age_val, mode):
     if mode is None:
         if hover is None:
             subset = language_table.query('type == "canada"')
-            return subset.to_dict("records"), 'Welcome to Canada', age_columns
+            return subset.to_dict("records"), 'All of Canada', age_columns
         else:
             hover_location = hover['points'][0]['location']
             subset = language_table.query('Region == @hover_location')
