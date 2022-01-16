@@ -35,7 +35,6 @@ language_table = pd.merge(
     on="name",
     how="left",
 )
-language_table = pd.concat((language_table, language_pairs.query('type == "canada"')))
 col_map = {
     "language_pair_collapsed": "Language Pair",
     "percent_bilingual_children_age_0_to_4": "% bilinguals 0-4y",
@@ -150,7 +149,7 @@ color_drop = dcc.Dropdown(
 
 figure_card = dbc.Card(
     [
-        dbc.CardHeader(html.H2("Home bilingualism in Canada")),
+        dbc.CardHeader(html.H3("Home bilingualism in Canada")),
         dbc.CardBody(
             [
                 dbc.Row(
@@ -185,10 +184,10 @@ figure_card = dbc.Card(
 
 table_card = dbc.Card(
     [
-        dbc.CardHeader([dbc.Row(["Most Common Language Pairs"])]),
+        dbc.CardHeader([dbc.Row([html.H3("Most Common Language Pairs")])]),
         dbc.CardBody(
             [
-                dbc.Row([html.Div(id="region_name")]),
+                dbc.Row([html.H5(id="region_name")]),
                 dbc.Row(
                     dash_table.DataTable(
                         id="table-lang",
