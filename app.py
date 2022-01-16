@@ -90,7 +90,7 @@ header = dbc.Navbar(
                             href="https://github.com/e-schott/BilingalismCanada",
                         )
                     ),
-                    dbc.Col(dbc.NavbarBrand("Information from the 2016 Canadian Census")),
+                    dbc.Col(dbc.NavbarBrand("The youngest bilingual Canadians: Insights from the 2016 Census regarding children aged 0-9")),
                 ],
                 align="center",
             ),
@@ -144,7 +144,7 @@ figure_card = dbc.Card(
                     ),
                     dbc.Col(color_drop)
                 ],
-                align="center"
+                align="right"
             ),
             dbc.Row(
                 dbc.Col(
@@ -154,7 +154,11 @@ figure_card = dbc.Card(
             ]
         ),
         dbc.CardFooter(
-            
+           dbc.Row( [
+                html.P('Created by'),
+                html.A('Sebastian Urchs', href = "https://github.com/surchs"),
+                html.A('Esther Schott', href = "https://github.com/e-schott"),
+           ])
         ),
     ]
 )
@@ -164,9 +168,11 @@ table_card = dbc.Card(
         dbc.CardHeader(
             [
                 dbc.Row([
-                    'Most Common Language Pairs:',
-                    'Region:',
-                    html.Div(id='city_name')
+                    'Most Common Language Pairs'
+                ]
+                ),
+                dbc.Row([
+                    'Region:', html.Div(id='city_name')
                 ]
                 ),
             dbc.Row(dash_table.DataTable(
@@ -182,7 +188,7 @@ table_card = dbc.Card(
                 ]
         ),
         dbc.CardFooter(dbc.Row(
-            ['Created by Sebastian Urchs and Esther Schott',
+            [
                 html.Div(id='foot'),
                 dcc.Store(id='store')
             ]
