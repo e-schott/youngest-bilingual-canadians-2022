@@ -180,8 +180,8 @@ table_card = dbc.Card(
             ),
                 ]
         ),
-        dbc.CardFooter(dbc.Row('Created by Sebastian Urchs and Esther Schott'
-            [
+        dbc.CardFooter(dbc.Row(
+            ['Created by Sebastian Urchs and Esther Schott'
                 html.Div(id='foot'),
                 dcc.Store(id='store')
             ]
