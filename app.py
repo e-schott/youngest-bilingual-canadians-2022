@@ -161,9 +161,10 @@ figure_card = dbc.Card(
 
 table_card = dbc.Card(
     [
-        dbc.CardHeader('Most Common Language Pairs:'
+        dbc.CardHeader(
             [
                 dbc.Row([
+                    'Most Common Language Pairs:',
                     'Region:',
                     html.Div(id='city_name')
                 ]
@@ -181,7 +182,7 @@ table_card = dbc.Card(
                 ]
         ),
         dbc.CardFooter(dbc.Row(
-            ['Created by Sebastian Urchs and Esther Schott'
+            ['Created by Sebastian Urchs and Esther Schott',
                 html.Div(id='foot'),
                 dcc.Store(id='store')
             ]
