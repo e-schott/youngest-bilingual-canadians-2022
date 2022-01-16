@@ -172,7 +172,7 @@ table_card = dbc.Card(
                 ]
                 ),
                 dbc.Row([
-                    'Region:', html.Div(id='city_name')
+                    html.Div(id='region_name')
                 ]
                 ),
             dbc.Row(dash_table.DataTable(
@@ -259,7 +259,7 @@ def set_mode(click, store):
 
 
 @app.callback(
-    [Output('table-lang', 'data'), Output('city_name', 'children'), Output('table-lang', 'columns')],
+    [Output('table-lang', 'data'), Output('region_name', 'children'), Output('table-lang', 'columns')],
     [Input("graph", "hoverData"), Input("color-drop-menu", "value")],
     State('store', 'data')
 )
@@ -267,15 +267,17 @@ def update_table(hover, age_val, mode):
     # Get age
     age = age_val.strip('Percent_age_')
     age_columns = [{"name": col_map[idx], "id": idx} for idx in col_map.keys() if 'percent' not in idx or age in idx]
-
+    region_name = 'Region: '
     if mode is None:
         if hover is None:
             subset = language_table.query('type == "canada"')
-            return subset.to_dict("records"), 'All of Canada', age_columns
+            region_name += 'All of Canada'
+            return subset.to_dict("records"), region_name, age_columns
         else:
             hover_location = hover['points'][0]['location']
             subset = language_table.query('Region == @hover_location')
-            return subset.to_dict("records"), hover['points'][0]['hovertext'], age_columns
+            region_name += hover['points'][0]['hovertext']
+            return subset.to_dict("records"), region_name, age_columns
     return dash.no_update, dash.no_update, age_columns
 
 
