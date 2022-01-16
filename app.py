@@ -28,15 +28,16 @@ language_pairs['name'] =[ row.area
                           ]
 language_table = pd.merge(language_pairs, results.query('area != "zz_other"')[['Region', 'name']], on='name')
 language_table = pd.concat((language_table, language_pairs.query('type == "canada"')))
-language_columns = [('language_pair', 'language_pair_collapsed'),
-                    ('% bil 0-4', 'percent_bilingual_children_age_0_to_4'),
-                    ('% bil 5-9', 'percent_bilingual_children_age_5_to_9'),
-                     ('% bil 0-9', 'percent_bilingual_children_age_0_to_9'),
-                      ('% all 0-4', 'percent_all_children_age_0_to_4'),
-                       ('% all 5-9', 'percent_all_children_age_5_to_9'),
-                        ('% all 0-9', 'percent_all_children_age_0_to_9')
-                    ]
-lang_columns = [{"name": name, "id": idx} for name, idx in language_columns]
+col_map = {'language_pair_collapsed': 'language_pair',
+           'percent_bilingual_children_age_0_to_4': '% bil 0-4',
+           'percent_bilingual_children_age_5_to_9': '% bil 5-9',
+           'percent_bilingual_children_age_0_to_9': '% bil 0-9',
+                      'percent_all_children_age_0_to_4': '% all 0-4',
+                       'percent_all_children_age_5_to_9': '% all 5-9',
+                        'percent_all_children_age_0_to_9': '% all 0-9'
+           }
+lang_columns = [{"name": col_map[idx], "id": idx} for idx in col_map.keys()]
+
 
 def make_figure(overlay=None):
     if overlay is None:
@@ -120,7 +121,7 @@ color_drop = dcc.Dropdown(
         {"label": col_name.capitalize(), "value": col_name}
         for col_name in results.columns if 'Percent' in col_name
     ],
-    value=None,
+    value='Percent_age_0_to_9'
 )
 
 figure_card = dbc.Card(
@@ -241,20 +242,24 @@ def set_mode(click, store):
 
 
 @app.callback(
-    [Output('table-lang', 'data'), Output('city_name', 'children')],
-    [Input("graph", "hoverData")],
+    [Output('table-lang', 'data'), Output('city_name', 'children'), Output('table-lang', 'columns')],
+    [Input("graph", "hoverData"), Input("color-drop-menu", "value")],
     State('store', 'data')
 )
-def update_table(hover, mode):
+def update_table(hover, age_val, mode):
+    # Get age
+    age = age_val.strip('Percent_age_')
+    age_columns = [{"name": col_map[idx], "id": idx} for idx in col_map.keys() if 'percent' not in idx or age in idx]
+
     if mode is None:
         if hover is None:
             subset = language_table.query('type == "canada"')
-            return subset.to_dict("records"), 'Welcome to Canada'
+            return subset.to_dict("records"), 'Welcome to Canada', age_columns
         else:
             hover_location = hover['points'][0]['location']
             subset = language_table.query('Region == @hover_location')
-            return subset.to_dict("records"), hover['points'][0]['hovertext']
-    return dash.no_update, dash.no_update
+            return subset.to_dict("records"), hover['points'][0]['hovertext'], age_columns
+    return dash.no_update, dash.no_update, age_columns
 
 
 if __name__ == "__main__":
