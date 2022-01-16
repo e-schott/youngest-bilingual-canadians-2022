@@ -154,7 +154,14 @@ figure_card = dbc.Card(
         dbc.CardBody(
             [
                 dbc.Row(
-                    [dbc.Col("Choose the age group to display:"), dbc.Col(color_drop)],
+                    [
+                        dbc.Col(
+                            html.B("Choose the age group to display:"),
+                            width={"offset": 4},
+                            align="center",
+                        ),
+                        dbc.Col(color_drop),
+                    ],
                     align="right",
                 ),
                 dbc.Row(dbc.Col(figure_box)),
@@ -164,10 +171,10 @@ figure_card = dbc.Card(
             dbc.Row(
                 html.Div(
                     [
-                        "Created by ",
-                        html.A("Sebastian Urchs", href="https://github.com/surchs"),
-                        " and ",
+                        "Data Preparation & Analysis: ",
                         html.A("Esther Schott", href="https://github.com/e-schott"),
+                        " Dashboard: ",
+                        html.A("Sebastian Urchs", href="https://github.com/surchs"),
                     ],
                     style={"display": "inline-block"},
                 )
