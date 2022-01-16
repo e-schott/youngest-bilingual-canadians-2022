@@ -1,10 +1,12 @@
 import dash
 import dash_bootstrap_components as dbc
+from dash import dash_table
+from dash.dash_table import Format
 import geopandas as gpd
 import pandas as pd
 import plotly.express as px
 from dash import html, dcc
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 
 external_stylesheets = [dbc.themes.BOOTSTRAP, "assets/styles.css"]
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
@@ -12,10 +14,30 @@ app.title = "Home bilingualism in Canada"
 server = app.server
 
 results = pd.read_csv('assets/bilingual_results_with_region_codes.tsv', sep='\t')
+language_pairs = pd.read_csv('assets/language_pairs.csv')
 geo_table = gpd.read_file('assets/recombined_shape_files.zip')
 columns = ['Percent_age_0_to_4', 'Percent_age_5_to_9', 'Percent_age_0_to_9']
 column_label = ['0 to 4 years', '5 to 9 years', 'Combined: 0 to 9 years']
 vmax = results[columns].max().max()
+
+# Merge bilingual pairs and region results
+language_pairs['name'] =[ row.area
+                         if row.type == 'cma'
+                         else row.province if row.type == 'province'
+                            else row.type
+                         for rid, row in language_pairs.iterrows()
+                          ]
+language_table = pd.merge(language_pairs, results.query('area != "zz_other"')[['Region', 'name']], on='name')
+language_table = pd.concat((language_table, language_pairs.query('type == "canada"')))
+col_map = {'language_pair_collapsed': 'language_pair',
+           'percent_bilingual_children_age_0_to_4': '% bil 0-4',
+           'percent_bilingual_children_age_5_to_9': '% bil 5-9',
+           'percent_bilingual_children_age_0_to_9': '% bil 0-9',
+                      'percent_all_children_age_0_to_4': '% all 0-4',
+                       'percent_all_children_age_5_to_9': '% all 5-9',
+                        'percent_all_children_age_0_to_9': '% all 0-9'
+           }
+lang_columns = [{"name": col_map[idx], "id": idx} for idx in col_map.keys()]
 
 
 def make_figure(overlay=None):
@@ -38,9 +60,9 @@ def make_figure(overlay=None):
                                            'Region': False
                                            },
                                labels={'province': 'Province',
-                                       'Percent_age_0_to_4': 'Home Bilingualism among children aged 0-4',
-                                       'Percent_age_5_to_9': 'Home Bilingualism among children aged 5-9',
-                                       'Percent_age_0_to_9': 'Home Bilingualism among children aged 0-9'},
+                                       'Percent_age_0_to_4': 'Home Bilingualism<br>among children aged 0-4',
+                                       'Percent_age_5_to_9': 'Home Bilingualism<br>among children aged 5-9',
+                                       'Percent_age_0_to_9': 'Home Bilingualism<br>among children aged 0-9'},
                                )
     fig['layout'].update(margin=dict(l=0, r=0, b=0, t=30))
     fig.update_layout(legend=dict(
@@ -107,7 +129,7 @@ color_drop = dcc.Dropdown(
         {"label": col_label, "value": col_name}
         for col_name, col_label in zip(columns, column_label)
     ],
-    value=None,
+    value='Percent_age_0_to_9'
 )
 
 figure_card = dbc.Card(
@@ -137,6 +159,38 @@ figure_card = dbc.Card(
     ]
 )
 
+table_card = dbc.Card(
+    [
+        dbc.CardHeader('This is a table'),
+        dbc.CardBody(
+            [
+                dbc.Row([
+                    'In the City of:',
+                    html.Div(id='city_name')
+                ]
+                ),
+            dbc.Row(dash_table.DataTable(
+                            id="table-lang",
+                            columns=lang_columns,
+                            data=language_table.query('Region==0').to_dict("records"),
+                            filter_action="native",
+                            style_table={"overflowY": "scroll"},
+                            fixed_rows={"headers": False, "data": 0},
+                            style_cell={"width": "85px"},
+                        ),
+            ),
+                ]
+        ),
+        dbc.CardFooter(dbc.Row(
+            [
+                html.Div(id='foot'),
+                dcc.Store(id='store')
+            ]
+        )
+        )
+    ]
+)
+
 abstract_card = dbc.Card(
     [
 
@@ -160,7 +214,11 @@ app.layout = html.Div(
     [
         header,
         dbc.Container([
-            dbc.Row(dbc.Col(figure_card, md=8), justify='center'),
+            dbc.Row(
+                [
+                    dbc.Col(figure_card, md=8),
+                    dbc.Col(table_card, md=4)
+], justify='center'),
             dbc.Row(dbc.Col(abstract_card, md=8), justify='center')
         ], fluid=True)
     ]
@@ -173,6 +231,46 @@ app.layout = html.Div(
 )
 def update_overlay(selected_overlay):
     return make_figure(selected_overlay)
+
+
+@app.callback(
+    Output('foot', 'children'),
+    Input('store', 'data')
+)
+def set_foot(store):
+    return str(store)
+
+
+@app.callback(
+    Output('store', 'data'),
+    Input("graph", "clickData"),
+    State('store', 'data'),
+    prevent_initial_call=True
+)
+def set_mode(click, store):
+    print(store)
+    return True if store is None else None
+
+
+@app.callback(
+    [Output('table-lang', 'data'), Output('city_name', 'children'), Output('table-lang', 'columns')],
+    [Input("graph", "hoverData"), Input("color-drop-menu", "value")],
+    State('store', 'data')
+)
+def update_table(hover, age_val, mode):
+    # Get age
+    age = age_val.strip('Percent_age_')
+    age_columns = [{"name": col_map[idx], "id": idx} for idx in col_map.keys() if 'percent' not in idx or age in idx]
+
+    if mode is None:
+        if hover is None:
+            subset = language_table.query('type == "canada"')
+            return subset.to_dict("records"), 'Welcome to Canada', age_columns
+        else:
+            hover_location = hover['points'][0]['location']
+            subset = language_table.query('Region == @hover_location')
+            return subset.to_dict("records"), hover['points'][0]['hovertext'], age_columns
+    return dash.no_update, dash.no_update, age_columns
 
 
 if __name__ == "__main__":
