@@ -30,7 +30,10 @@ language_pairs["name"] = [
     for rid, row in language_pairs.iterrows()
 ]
 language_table = pd.merge(
-    language_pairs, results.query('area != "zz_other"')[["Region", "name"]], on="name"
+    language_pairs,
+    results.query('area != "zz_other"')[["Region", "name"]],
+    on="name",
+    how="left",
 )
 language_table = pd.concat((language_table, language_pairs.query('type == "canada"')))
 col_map = {
@@ -276,9 +279,21 @@ def update_table(hover, age_val, mode):
             return subset.to_dict("records"), region_name, age_columns
         else:
             hover_location = hover["points"][0]["location"]
+            hover_name = hover["points"][0]["hovertext"]
+            # Hardcoded fix for Ottawa and Northern Canada
+            if "Ottawa" in hover_name or hover_name in [
+                "Northwest Territories",
+                "Nunavut",
+                "Yukon",
+            ]:
+                if "Ottawa" in hover_name:
+                    hover_name = "Ottawa"
+                else:
+                    hover_name = "Northern Canada"
+                subset = language_table.query("name == @hover_name")
+                return subset.to_dict("records"), region_name + hover_name, age_columns
             subset = language_table.query("Region == @hover_location")
-            region_name += hover["points"][0]["hovertext"]
-            return subset.to_dict("records"), region_name, age_columns
+            return subset.to_dict("records"), region_name + hover_name, age_columns
     return dash.no_update, dash.no_update, age_columns
 
 
