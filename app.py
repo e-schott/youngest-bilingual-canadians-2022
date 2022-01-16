@@ -198,11 +198,11 @@ table_card = dbc.Card(
 
 abstract_card = dbc.Card(
     [
+        dbc.CardHeader(html.H3("Abstract")),
         dbc.CardBody(
             dbc.Row(
                 dbc.Col(
                     [
-                        html.H3("Abstract"),
                         html.P(
                             "This study used the 2016 Canadian Census data to examine home bilingualism amongst children aged 0–9 years. Across Canada, 18 percent of children used at least two languages at home, which rose to more than 25 percent in large cities, and the Canadian territories. English and French was the most common language pair in Quebec and Ontario, and various other pairs were spoken in most provinces. In the territories, 17 percent of children spoke an Indigenous language and English, and we discuss specific opportunities and challenges for Indigenous language revitalization. The presence of bilingual adults in the home, and immigration generation were the strongest predictors of children's home bilingualism. We conclude by discussing how policies can encourage child bilingualism, such as by supporting children’s home language in early and primary education settings. Such policies must be tailored to the needs of the specific communities to optimally support bilingual children and their families. "
                         ),
@@ -221,13 +221,14 @@ app.layout = html.Div(
     [
         header,
         dbc.Container(
-            [
-                dbc.Row(
-                    [dbc.Col(figure_card, md=6), dbc.Col(table_card, md=6)],
-                    justify="center",
-                ),
-                dbc.Row(dbc.Col(abstract_card, md=8), justify="center"),
-            ],
+            dbc.Row(
+                [
+                    dbc.Col(figure_card, md=6),
+                    dbc.Col(
+                        [table_card, abstract_card],
+                    ),
+                ]
+            ),
             fluid=True,
         ),
     ]
