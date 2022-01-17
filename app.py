@@ -21,7 +21,7 @@ vmax = results[columns].max().max()
 
 # Merge bilingual pairs and region results
 language_pairs["name"] = [
-    row.area
+    ' - '.join([reg.strip(' ') for reg in row.area.split('–')])
     if row.type == "cma"
     else row.province
     if row.type == "province"
