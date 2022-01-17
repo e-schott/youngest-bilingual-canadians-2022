@@ -79,9 +79,10 @@ def make_figure(overlay=None):
             "Percent_age_0_to_9": "Home Bilingualism<br>among children aged 0-9",
         },
     )
-    fig["layout"].update(margin=dict(l=0, r=0, b=0, t=30))
     fig.update_layout(
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        margin=dict(l=0, r=0, b=0, t=30),
+        uirevision=True
     )
     return fig
 
