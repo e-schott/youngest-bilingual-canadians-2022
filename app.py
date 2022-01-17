@@ -8,7 +8,7 @@ import plotly.express as px
 from dash import html, dcc
 from dash.dependencies import Input, Output, State
 
-external_stylesheets = [dbc.themes.BOOTSTRAP, "assets/styles.css"]
+external_stylesheets = [dbc.themes.FLATLY, "assets/styles.css"]
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 app.title = "Home bilingualism in Canada"
 server = app.server
@@ -86,6 +86,15 @@ def make_figure(overlay=None):
     return fig
 
 
+button_gh = dbc.Button(
+    "View Code on github",
+    outline=True,
+    color="light",
+    href="https://github.com/e-schott/youngest-bilingual-canadians-2022",
+    id="gh-link",
+    style={"text-transform": "none"},
+)
+
 # Define Header Layout
 header = dbc.Navbar(
     dbc.Container(
@@ -115,7 +124,7 @@ header = dbc.Navbar(
                         dbc.NavbarToggler(id="navbar-toggler"),
                         dbc.Collapse(
                             dbc.Nav(
-                                [],
+                                [dbc.NavItem(button_gh)],
                                 className="ml-auto",
                                 navbar=True,
                             ),
@@ -129,7 +138,7 @@ header = dbc.Navbar(
         ],
         fluid=True,
     ),
-    color="dark",
+    color="secondary",
     dark=True,
 )
 
@@ -290,6 +299,7 @@ faq_card = dbc.Card(
     ]
 )
 
+
 app.layout = html.Div(
     [
         header,
@@ -304,14 +314,6 @@ app.layout = html.Div(
                     ]
                 ),
                 dbc.Row(dbc.Col(faq_card)),
-                # dbc.Row(
-                #     dbc.Col(
-                #        html.A(
-                #           "See this project on Github",
-                #          href="https://github.com/e-schott/youngest-bilingual-canadians-2022",
-                #     ),
-                # )
-                # ),
             ],
             fluid=True,
         ),
