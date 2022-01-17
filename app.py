@@ -193,7 +193,7 @@ table_card = dbc.Card(
                         id="table-lang",
                         columns=lang_columns,
                         data=language_table.query("Region==0").to_dict("records"),
-                        filter_action="native",
+                        filter_action="none",
                         style_table={"height": None},
                         fixed_rows={"headers": False, "data": 0},
                         style_cell={"width": "85px"},
@@ -251,9 +251,11 @@ faq_card = dbc.Card(
                     [
                         dbc.AccordionItem(
                             [
-                                html.P("This is the content of the first section"),
+                                html.P(
+                                    "In the dataset, we only have information about the children's home languagues. For all children, the adults living with them filled out which languages they speak (for older kids) or hear (for kids who don't speak yet). So, especially older kids may use other languages in school that isn't captured in our data, so the numbers of bilinguals is a lower bound of the actual number of bilingual children."
+                                ),
                             ],
-                            title="Who is bilingual?",
+                            title="What do you mean by home bilingualism?",
                         ),
                         dbc.AccordionItem(
                             [
