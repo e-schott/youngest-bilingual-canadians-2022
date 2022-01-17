@@ -168,15 +168,24 @@ figure_card = dbc.Card(
         ),
         dbc.CardFooter(
             dbc.Row(
-                html.Div(
-                    [
-                        "Data Preparation & Analysis: ",
-                        html.A("Esther Schott", href="https://github.com/e-schott"),
-                        " Dashboard: ",
-                        html.A("Sebastian Urchs", href="https://github.com/surchs"),
-                    ],
-                    style={"display": "inline-block"},
-                )
+                [
+                    html.Div(
+                        [
+                            "Data Preparation & Analysis: ",
+                            html.A("Esther Schott", href="https://github.com/e-schott"),
+                        ],
+                        style={"display": "inline-block"},
+                    ),
+                    html.Div(
+                        [
+                            "Dashboard: ",
+                            html.A("Esther Schott", href="https://github.com/e-schott"),
+                            " & ",
+                            html.A("Sebastian Urchs", href="https://github.com/surchs"),
+                        ],
+                        style={"display": "inline-block"},
+                    ),
+                ]
             )
         ),
     ]
@@ -295,6 +304,14 @@ app.layout = html.Div(
                     ]
                 ),
                 dbc.Row(dbc.Col(faq_card)),
+                # dbc.Row(
+                #     dbc.Col(
+                #        html.A(
+                #           "See this project on Github",
+                #          href="https://github.com/e-schott/youngest-bilingual-canadians-2022",
+                #     ),
+                # )
+                # ),
             ],
             fluid=True,
         ),
