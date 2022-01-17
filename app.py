@@ -207,11 +207,11 @@ table_card = dbc.Card(
 
 abstract_card = dbc.Card(
     [
-        dbc.CardHeader(html.H3("Abstract")),
+        dbc.CardHeader(html.H3("More about our paper")),
         dbc.CardBody(
             dbc.Row(
                 dbc.Col(
-                    [
+                    [  # html.H3("Most Common Language Pairs"),
                         html.P(
                             "This study used the 2016 Canadian Census data to examine home bilingualism amongst children aged 0–9 years. Across Canada, 18 percent of children used at least two languages at home, which rose to more than 25 percent in large cities, and the Canadian territories. English and French was the most common language pair in Quebec and Ontario, and various other pairs were spoken in most provinces. In the territories, 17 percent of children spoke an Indigenous language and English, and we discuss specific opportunities and challenges for Indigenous language revitalization. The presence of bilingual adults in the home, and immigration generation were the strongest predictors of children's home bilingualism. We conclude by discussing how policies can encourage child bilingualism, such as by supporting children’s home language in early and primary education settings. Such policies must be tailored to the needs of the specific communities to optimally support bilingual children and their families. "
                         ),
@@ -219,7 +219,60 @@ abstract_card = dbc.Card(
                             "For more information, find the full paper at https://psyarxiv.com/6q9jg/",
                             href="https://psyarxiv.com/6q9jg/",
                         ),
+                        html.P(""),
+                        html.H5("Authors"),
+                        html.A(
+                            "Esther Schott",
+                            href="https://e-schott.github.io/",
+                        ),
+                        ", ",
+                        html.A(
+                            "Lena V. Kremin",
+                            href="https://www.lenavkremin.com/",
+                        ),
+                        " & ",
+                        html.A(
+                            "Krista Byers-Heinlein",
+                            href="http://infantresearch.ca/team",
+                        ),
                     ]
+                )
+            )
+        ),
+    ]
+)
+
+faq_card = dbc.Card(
+    [
+        dbc.CardHeader(html.H3("FAQs")),
+        dbc.CardBody(
+            html.Div(
+                dbc.Accordion(
+                    [
+                        dbc.AccordionItem(
+                            [
+                                html.P("This is the content of the first section"),
+                            ],
+                            title="Who is bilingual?",
+                        ),
+                        dbc.AccordionItem(
+                            [
+                                html.P(
+                                    "We used the 'Individuals' dataset from the Public Use Microdata Files from Statistics Canada. These data were collected as part of the 2016 Census."
+                                ),
+                            ],
+                            title="Where do your data come from?",
+                        ),
+                        dbc.AccordionItem(
+                            "The data that Statistics Canada released is chosen so no identifiable details are revealed about the respondents. This is easier in big cities, and hard in less populated areas. For this reason, we have specific info about the location of residents of big cities, and know only the province for residents of less populated areas.",
+                            title="Why is there detailed info on some areas (big cities) but not others?",
+                        ),
+                        dbc.AccordionItem(
+                            "Young children learn so much about language in the first few years, and as our analysis shows, at least 17 % of children in Canada grow up with at least two languages. It's important to learn about young bilinguals, to be able to better support them in school, and in their community.",
+                            title="Why do you focus on children?",
+                        ),
+                    ],
+                    start_collapsed=True,
                 )
             )
         ),
@@ -230,14 +283,17 @@ app.layout = html.Div(
     [
         header,
         dbc.Container(
-            dbc.Row(
-                [
-                    dbc.Col(figure_card, md=6),
-                    dbc.Col(
-                        [table_card, abstract_card],
-                    ),
-                ]
-            ),
+            [
+                dbc.Row(
+                    [
+                        dbc.Col(figure_card),
+                        dbc.Col(
+                            [table_card, abstract_card],
+                        ),
+                    ]
+                ),
+                dbc.Row(dbc.Col(faq_card)),
+            ],
             fluid=True,
         ),
     ]
