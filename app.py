@@ -1,10 +1,9 @@
 import dash
 import dash_bootstrap_components as dbc
-from dash import dash_table
-from dash.dash_table import Format
 import geopandas as gpd
 import pandas as pd
 import plotly.express as px
+from dash import dash_table
 from dash import html, dcc
 from dash.dependencies import Input, Output, State
 
@@ -22,7 +21,7 @@ vmax = results[columns].max().max()
 
 # Merge bilingual pairs and region results
 language_pairs["name"] = [
-    row.area
+    ' - '.join([reg.strip(' ') for reg in row.area.split('–')])
     if row.type == "cma"
     else row.province
     if row.type == "province"
@@ -79,9 +78,10 @@ def make_figure(overlay=None):
             "Percent_age_0_to_9": "Home Bilingualism<br>among children aged 0-9",
         },
     )
-    fig["layout"].update(margin=dict(l=0, r=0, b=0, t=30))
     fig.update_layout(
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        margin=dict(l=0, r=0, b=0, t=30),
+        uirevision=True
     )
     return fig
 
@@ -156,6 +156,26 @@ color_drop = dcc.Dropdown(
     value="Percent_age_0_to_9",
 )
 
+button_group = html.Div(
+    [
+        dbc.RadioItems(
+            id="age_radios",
+            className="btn-group",
+            inputClassName="btn-check",
+            labelClassName="btn btn-outline-primary",
+            labelCheckedClassName="active",
+            options=[
+                {"label": col_label, "value": col_name}
+                for col_name, col_label in zip(columns, column_label)
+            ],
+            value="Percent_age_0_to_9",
+        ),
+        html.Div(id="output"),
+    ],
+    className="radio-group",
+)
+
+
 figure_card = dbc.Card(
     [
         dbc.CardHeader(html.H3("Home bilingualism in Canada")),
@@ -168,7 +188,7 @@ figure_card = dbc.Card(
                             width={"offset": 4},
                             align="center",
                         ),
-                        dbc.Col(color_drop),
+                        dbc.Col(button_group, md=6),
                     ],
                     align="right",
                 ),
@@ -347,7 +367,7 @@ app.layout = html.Div(
 )
 
 
-@app.callback(Output("graph", "figure"), Input("color-drop-menu", "value"))
+@app.callback(Output("graph", "figure"), Input("age_radios", "value"))
 def update_overlay(selected_overlay):
     return make_figure(selected_overlay)
 
@@ -369,7 +389,7 @@ def set_mode(click, store):
         Output("region_name", "children"),
         Output("table-lang", "columns"),
     ],
-    [Input("graph", "hoverData"), Input("color-drop-menu", "value")],
+    [Input("graph", "hoverData"), Input("age_radios", "value")],
     State("store", "data"),
 )
 def update_table(hover, age_val, mode):
