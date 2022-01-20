@@ -21,7 +21,7 @@ vmax = results[columns].max().max()
 
 # Merge bilingual pairs and region results
 language_pairs["name"] = [
-    ' - '.join([reg.strip(' ') for reg in row.area.split('–')])
+    " - ".join([reg.strip(" ") for reg in row.area.split("–")])
     if row.type == "cma"
     else row.province
     if row.type == "province"
@@ -81,7 +81,7 @@ def make_figure(overlay=None):
     fig.update_layout(
         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
         margin=dict(l=0, r=0, b=0, t=30),
-        uirevision=True
+        uirevision=True,
     )
     return fig
 
@@ -331,7 +331,7 @@ faq_card = dbc.Card(
                                 " geared towards parents is a great place to start. You can also find information about studies with bilingual babies and children ",
                                 html.A(
                                     "on our website. ",
-                                    href="https://osf.io/jerty",
+                                    href="http://infantresearch.ca/welcome",
                                 ),
                             ],
                             title="Where can I learn more about young bilinguals?",
