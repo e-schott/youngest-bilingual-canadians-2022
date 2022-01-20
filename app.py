@@ -269,11 +269,23 @@ faq_card = dbc.Card(
                     [
                         dbc.AccordionItem(
                             [
+                                "Young children learn so much about language in the first few years, and as our analysis shows, at least 17 % of children in Canada grow up with at least two languages. It's important to learn about young bilinguals, to be able to better support them in ",
+                                html.A(
+                                    "school, and in their community.",
+                                    href="https://osf.io/jerty",
+                                ),
+                            ],
+                            title="Why do you focus on children?",
+                            item_id="item-1",
+                        ),
+                        dbc.AccordionItem(
+                            [
                                 html.P(
-                                    "In the dataset, we only have information about the children's home languagues. For all children, the adults living with them filled out which languages they speak (for older kids) or hear (for kids who don't speak yet). So, especially older kids may use other languages in school that isn't captured in our data, so the numbers of bilinguals is a lower bound of the actual number of bilingual children."
+                                    "In the dataset, we only have information about the children's home languagues. For all children, the adults living with them indicated which languages they speak (for older kids) or hear (for kids who don't speak yet). So, especially older kids may use other languages in school that isn't captured in our data, so the numbers of bilinguals almost certainly underestimates the total number of bilingual children."
                                 ),
                             ],
                             title="What do you mean by home bilingualism?",
+                            item_id="item-2",
                         ),
                         dbc.AccordionItem(
                             [
@@ -282,17 +294,31 @@ faq_card = dbc.Card(
                                 ),
                             ],
                             title="Where do your data come from?",
+                            item_id="item-3",
                         ),
                         dbc.AccordionItem(
-                            "The data that Statistics Canada released is chosen so no identifiable details are revealed about the respondents. This is easier in big cities, and hard in less populated areas. For this reason, we have specific info about the location of residents of big cities, and know only the province for residents of less populated areas.",
+                            "The data that Statistics Canada released are chosen so no identifiable details are revealed about the respondents. This is easier in big cities, and hard in less populated areas. For this reason, we have specific info about the location of residents of big cities, and know only the province for residents of less populated areas.",
                             title="Why is there detailed info on some areas (big cities) but not others?",
+                            item_id="item-1",
                         ),
                         dbc.AccordionItem(
-                            "Young children learn so much about language in the first few years, and as our analysis shows, at least 17 % of children in Canada grow up with at least two languages. It's important to learn about young bilinguals, to be able to better support them in school, and in their community.",
-                            title="Why do you focus on children?",
+                            [
+                                "If you're interested in reading more about bilingual children and babies in particular,  ",
+                                html.A(
+                                    "this paper",
+                                    href="https://osf.io/jerty",
+                                ),
+                                " geared towards parents is a great place to start. You can also find information about studies with bilingual babies and children ",
+                                html.A(
+                                    "on our website. ",
+                                    href="https://osf.io/jerty",
+                                ),
+                            ],
+                            title="Where can I learn more about young bilinguals?",
+                            item_id="item-4",
                         ),
                     ],
-                    start_collapsed=True,
+                    active_item="item-4",
                 )
             )
         ),
