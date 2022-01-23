@@ -409,13 +409,16 @@ def update_table(hover, age_val, mode):
         else:
             hover_location = hover["points"][0]["location"]
             hover_name = hover["points"][0]["hovertext"]
+            hover_province = hover["points"][0]["customdata"][0]
             # Hardcoded fix for Ottawa and Northern Canada
             if "Ottawa" in hover_name or hover_name in [
                 "Northwest Territories",
                 "Nunavut",
                 "Yukon",
             ]:
-                if "Ottawa" in hover_name:
+                if "Ottawa" in hover_name and hover_province == "Quebec":
+                    hover_name = "Gatineau"
+                elif "Ottawa" in hover_name and hover_province == "Ontario":
                     hover_name = "Ottawa"
                 else:
                     hover_name = "Northern Canada"
