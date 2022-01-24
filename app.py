@@ -102,15 +102,6 @@ header = dbc.Navbar(
             dbc.Row(
                 [
                     dbc.Col(
-                        html.A(
-                            html.Img(
-                                src=app.get_asset_url("Flag_of_Canada_(Pantone).svg"),
-                                height="30px",
-                            ),
-                            href="https://github.com/e-schott/BilingalismCanada",
-                        )
-                    ),
-                    dbc.Col(
                         dbc.NavbarBrand(
                             "The youngest bilingual Canadians: Insights from the 2016 Census regarding children aged 0-9"
                         )
