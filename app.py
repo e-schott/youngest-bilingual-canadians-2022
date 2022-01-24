@@ -189,9 +189,12 @@ figure_card = dbc.Card(
         dbc.CardFooter(
             dbc.Row(
                 [
+                    html.P(
+                        "Adapted from Statistics Canada, 2016 Census of Population Public Use Microdata File Individuals File, 2019. This does not constitute an endorsement by Statistics Canada of this product."
+                    ),
                     html.Div(
                         [
-                            "Data Preparation & Analysis: ",
+                            "Data Analysis: ",
                             html.A("Esther Schott", href="https://github.com/e-schott"),
                         ],
                         style={"display": "inline-block"},
