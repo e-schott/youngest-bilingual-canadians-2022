@@ -267,6 +267,13 @@ abstract_card = dbc.Card(
                             "Krista Byers-Heinlein",
                             href="http://infantresearch.ca/team",
                         ),
+                        html.P(""),
+                        html.H5("Citation"),
+                        dcc.Markdown(
+                            """
+**Schott, E.**, Kremin, L. V., & Byers-Heinlein, K. (in press). The youngest bilingual Canadians: Insights from the 2016 Census regarding children aged 0-9. Manuscript accepted for publication at *Canadian Public Policy/Analyse de politiques*.
+"""
+                        ),
                     ]
                 )
             )
@@ -320,11 +327,11 @@ faq_card = dbc.Card(
                                 "If you're interested in reading more about bilingual children and babies in particular,  ",
                                 html.A(
                                     "this paper",
-                                    href="https://osf.io/jerty",
+                                    href="https://static1.squarespace.com/static/555906d9e4b0251d92d5635a/t/556235e6e4b00576f83d2299/1432499686131/KBHCLW_LEARn.pdf",
                                 ),
                                 " geared towards parents is a great place to start. You can also find information about studies with bilingual babies and children ",
                                 html.A(
-                                    "on our website. ",
+                                    "at the Concordia Infant Research Lab. ",
                                     href="http://infantresearch.ca/welcome",
                                 ),
                             ],
