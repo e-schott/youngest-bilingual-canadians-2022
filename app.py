@@ -271,7 +271,7 @@ abstract_card = dbc.Card(
                         html.H5("Citation"),
                         dcc.Markdown(
                             """
-**Schott, E.**, Kremin, L. V., & Byers-Heinlein, K. (in press). The youngest bilingual Canadians: Insights from the 2016 Census regarding children aged 0-9. Manuscript accepted for publication at *Canadian Public Policy/Analyse de politiques*.
+Schott, E., Kremin, L. V., & Byers-Heinlein, K. (in press). The youngest bilingual Canadians: Insights from the 2016 Census regarding children aged 0-9. Manuscript accepted for publication at *Canadian Public Policy/Analyse de politiques*.
 """
                         ),
                     ]
