@@ -68,9 +68,9 @@ def make_figure(overlay=None):
         range_color=(0, vmax),
         hover_data={
             "province": True,
-            "Percent_age_0_to_4": True,
-            "Percent_age_5_to_9": True,
-            "Percent_age_0_to_9": True,
+            "Percent_age_0_to_4": True if overlay == 'Percent_age_0_to_4' else False,
+            "Percent_age_5_to_9": True if overlay == 'Percent_age_5_to_9' else False,
+            "Percent_age_0_to_9": True if overlay == 'Percent_age_0_to_9' else False,
             "Region": False,
         },
         labels={
